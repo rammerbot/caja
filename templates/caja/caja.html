@@ -1,0 +1,360 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+
+{% block content %} 
+<div class="grid-container shadow">
+    {% if messages %}
+        <ul class="messages mensaje_registro">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST">{% csrf_token %}
+        <div class="grid-x grid-padding-x">
+            <div class="large-9 cell">
+                <h1> Cierre de Caja</h1>
+            </div>
+            <!-- inicio de bloque para Form de sistemas--> 
+            <div class="large-12 cell">
+                <hr>
+                <h3>sistemas</h3>
+            </div>
+                <div class="large-9 cell">
+                    <label>{{form.nombre_caja.label_tag}}
+                        {{form.nombre_caja}}
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                    <label>{{form.tinbet.label_tag}}
+                        {{form.tinbet}}
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                    <label>{{form.betgana.label_tag}}
+                        {{form.betgana}}
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                    <label>{{form.golden.label_tag}}
+                        {{form.golden}}
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                    <label>{{form.soft.label_tag}}
+                        {{form.soft}}
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                    <label>{{form.caballos_uh1.label_tag}}
+                        {{form.caballos_uh1}}
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                    <label>{{form.caballos_uh2.label_tag}}
+                        {{form.caballos_uh2}}
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                    <label>{{form.caballos_peruvian.label_tag}}
+                        {{form.caballos_peruvian}}
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                    <label>{{form.mesa.label_tag}}
+                        {{form.mesa}}
+                    </label>
+                </div>
+
+                <!-- Fin de bloque para Form de sistemas--> 
+
+                <!-- inicio de bloque para Form de egresos--> 
+
+                <div class="large-12 cell">
+                    <hr>
+                    <h3>Egresos</h3>
+                </div>
+                <div class="medium-6 cell">
+                    <label>{{form.yapes.label_tag}}
+                        {{form.yapes}}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>{{form.pos.label_tag}}
+                        {{form.pos}}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>{{form.pagos_tickets.label_tag}}
+                        {{form.pagos_tickets}}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>{{form.gastos_generales.label_tag}}
+                        {{form.gastos_generales}}
+                    </label>
+                </div>
+
+                <!-- fin de bloque para Form de egresos--> 
+                <!-- Inicio de bloque para Form de ingresos--> 
+
+                <div class="large-12 cell">
+                    <hr>
+                    <h3>Ingresos</h3>
+                </div>
+                <div class="medium-6 cell">
+                    <label>{{form.cobros_tickets.label_tag}}
+                        {{form.cobros_tickets}}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>{{form.depositos.label_tag}}
+                        {{form.depositos}}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>{{form.recargas.label_tag}}
+                        {{form.recargas}}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>{{form.ingreso_general.label_tag}}
+                        {{form.ingreso_general}}
+                    </label>
+                </div>
+                <!-- Fin de bloque para Form de ingresos--> 
+                <!--  bloque para Form de Calculos--> 
+                
+                <div class="large-12 cell">
+                    <hr>
+                    <h3>totales</h3>
+                </div>
+                <div class="grid-x large-6 margen">
+                    <div class="medium-4 cell">
+                        <label>{{form.efectivo.label_tag}}
+                            {{resultado_conteo_billetes}}
+                        </label>
+                    </div>
+                    <div class="medium-4 cell">
+                        <label>{{form.caja_anterior.label_tag}}
+                            {{form.caja_anterior}}
+                        </label>
+                    </div>
+                    <div class="medium-4 cell margen">
+                        <label>{{form.caja_total.label_tag}}
+                            {% if resultado_caja_total %}
+                                    {{resultado_caja_total}}
+                                    {% else %}
+                                    {{form.caja_total.value}}
+                                {% endif %}
+                        </label>
+                    </div>
+                    <div class="medium-4 cell">
+                        <label>{{form.total_sistemas.label_tag}}
+                            {% if resultado_sistemas %}
+                                {{resultado_sistemas}}
+                                {% else %}
+                                {{form.total_sistemas.value}}
+                            {% endif %}
+                        </label>
+                    </div>
+                    {{total}}
+                    <div class="medium-4 cell">
+                        <label>{{form.egreso_total.label_tag}}
+                                {% if resultado_egresos %}
+                                    {{resultado_egresos}}
+                                    {% else %}
+                                    {{form.egreso_total.value}}
+                                {% endif %}
+                        </label>
+                    </div>
+                    <div class="medium-4 cell margen">
+                        <label>{{form.ingreso_total.label_tag}}
+                            {% if resultado_ingresos %}
+                                    {{resultado_ingresos}}
+                                    {% else %}
+                                    {{form.ingreso_total.value}}
+                                {% endif %}
+                        </label>
+                    </div>
+                    <div class="medium-4 cell">
+                        <label>{{form.total_dia.label_tag}}
+                            {% if resultado_total_dia %}
+                                    {{resultado_total_dia}}
+                                    {% else %}
+                                    {{form.total_dia.value}}
+                                {% endif %}
+                        </label>
+                    </div>
+                    <div class="medium-4 cell">
+                        <label>{{form.diferencia.label_tag}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_diferencia}}
+                                    {% else %}
+                                    {{form.diferencia.value}}
+                                {% endif %}
+                        </label>
+                    </div>
+                </div>
+                <!-- Fin bloque para Form de Calculos--> 
+                <!-- Inicio bloque para Contador de Monedas y Efectivo--> 
+                <div class="grid-x cell medium-4">
+                    <div class="medium-4 cell borde">
+                        <label>{{form.guardado.label_tag}} {{form.guardado}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_guardado}}
+                                    {% else %}
+                                    {{form.guardado.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.calabaza.label_tag}} {{form.calabaza}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_calabaza}}
+                                    {% else %}
+                                    {{form.calabaza.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.centimos.label_tag}} {{form.centimos}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_centimos}}
+                                    {% else %}
+                                    {{form.centimos.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.rotos.label_tag}} {{form.rotos}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_rotos}}
+                                    {% else %}
+                                    {{form.rotos.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.cobre.label_tag}} {{form.cobre}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_cobre}}
+                                    {% else %}
+                                    {{form.cobre.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.cien.label_tag}} {{form.cien}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_cien}}
+                                    {% else %}
+                                    {{form.cien.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.cincuenta.label_tag}} {{form.cincuenta}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_cincuenta}}
+                                    {% else %}
+                                    {{form.cincuenta.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.veinte.label_tag}} {{form.veinte}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_veinte}}
+                                    {% else %}
+                                    {{form.veinte.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.diez.label_tag}} {{form.diez}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_diez}}
+                                    {% else %}
+                                    {{form.diez.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.cinco.label_tag}} {{form.cinco}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_cinco}}
+                                    {% else %}
+                                    {{form.cinco.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.dos.label_tag}} {{form.dos}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_dos}}
+                                    {% else %}
+                                    {{form.dos.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.uno.label_tag}} {{form.uno}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_uno}}
+                                    {% else %}
+                                    {{form.uno.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
+                        <label>{{form.medio.label_tag}} {{form.medio}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_medio}}
+                                    {% else %}
+                                    {{form.medio.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde button_margin">
+                        <label>Total:
+                                {{resultado_conteo_billetes}}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell button_margin">
+                        <div class="medium-4 cell">
+                            <button class="button alert shadow_buttons" name="calcular" id="calcular" type="submit">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Inicio bloque para Contador de Monedas y Efectivo--> 
+                <!--  bloque para Form observaciones--> 
+                <div class="medium-6 cell">
+                    <label>{{form.observaciones.label_tag}}
+                        {{form.observaciones}}
+                    </label>
+                </div>
+                <!-- Fin bloque para Form observaciones--> 
+                <div class="medium-12 cell">
+                    <div class="medium-4 cell">
+                        <button class="button success shadow_buttons" name="guardar" type="submit">Guardar</button>
+                    </div>
+                </div>
+        </div>
+    </form>
+    <div class="medium-12 cell imprimir">
+        <div class="medium-4 cell">
+            <button class="button warning shadow_buttons" onclick="window.print()">Imprimir</button>
+        </div>
+    </div>
+</div>
+{% endblock content %}

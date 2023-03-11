@@ -44,7 +44,9 @@ THIRD_APPS = [
 
 MY_APPS = [
     'applications.users',
-    'applocations.caja',
+    'applications.caja',
+    'applications.informes',
+    'applications.banco',
 
 ]
 

@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block header %}
+    {% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block content %}
+    <div class="grid-container">
+        <div class="grid-x center_login">
+            <div class="cell large-5 card-section shadow">
+                <form method="post">{% csrf_token %}
+                    {{form.as_p}}
+                    <button class="button success" type="submit">Acceder</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+{% endblock content %}

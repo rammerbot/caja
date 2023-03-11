@@ -1,0 +1,194 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+{% block content %} 
+
+<form method="POST">{% csrf_token %}
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="large-9 cell">
+            <h1> Cierre de Caja</h1>
+        </div>
+        <!-- inicio de bloque para Form de sistemas--> 
+        <div class="large-12 cell">
+            <hr>
+            <h3>sistemas</h3>
+        </div>
+            <div class="large-9 cell">
+                <label>{{form.nombre_caja.label_tag}}
+                    {{form.nombre_caja}}
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>{{form.tinbet.label_tag}}
+                    {{form.tinbet}}
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>{{form.betgana.label_tag}}
+                    {{form.betgana}}
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>{{form.golden.label_tag}}
+                    {{form.golden}}
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>{{form.soft.label_tag}}
+                    {{form.soft}}
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>{{form.caballos_uh1.label_tag}}
+                    {{form.caballos_uh1}}
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>{{form.caballos_uh2.label_tag}}
+                    {{form.caballos_uh2}}
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>{{form.caballos_peruvian.label_tag}}
+                    {{form.caballos_peruvian}}
+                </label>
+            </div>
+
+            <!-- Fin de bloque para Form de sistemas--> 
+
+            <!-- inicio de bloque para Form de egresos--> 
+
+            <div class="large-12 cell">
+                <hr>
+                <h3>Egresos</h3>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.yapes.label_tag}}
+                    {{form.yapes}}
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.pos.label_tag}}
+                    {{form.pos}}
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.pagos_tickets.label_tag}}
+                    {{form.pagos_tickets}}
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.gastos_generales.label_tag}}
+                    {{form.gastos_generales}}
+                </label>
+            </div>
+
+            <!-- fin de bloque para Form de egresos--> 
+            <!-- Inicio de bloque para Form de ingresos--> 
+
+            <div class="large-12 cell">
+                <hr>
+                <h3>Ingresos</h3>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.cobros_tickets.label_tag}}
+                    {{form.cobros_tickets}}
+                </label>
+            </div>
+            <!-- Fin de bloque para Form de ingresos--> 
+            <!--  bloque para Form de Calculos--> 
+
+            <div class="large-12 cell">
+                <hr>
+                <h3>totales</h3>
+            </div>
+
+            <div class="medium-6 cell">
+                <label>{{form.efectivo.label_tag}}
+                    {{form.efectivo}}
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.caja_anterior.label_tag}}
+                    {{form.caja_anterior}}
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.caja_total.label_tag}}
+                    {{form.caja_total}}
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.total_sistemas.label_tag}}
+                    {{form.total_sistemas}}
+                </label>
+            </div>
+            {{total}}
+            <div class="medium-6 cell">
+                <label>{{form.egreso_total.label_tag}}
+                    {{form.egreso_total}}
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.ingreso_total.label_tag}}
+                    {{form.ingreso_total}}
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.total_dia.label_tag}}
+                    {{form.total_dia}}
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>{{form.diferencia.label_tag}}
+                    {{form.diferencia}}
+                </label>
+            </div>
+            <div class="medium-12 cell">
+                <div class="medium-4 cell">
+                    <button class="button alert" name="calcular" id="calcular" type="submit">Calcular</button>
+                </div>
+            </div>
+             <!-- Fin bloque para Form de Calculos--> 
+             <!--  bloque para Form observaciones--> 
+             <div class="medium-6 cell">
+                <label>{{form.observaciones.label_tag}}
+                    {{form.observaciones}}
+                </label>
+            </div>
+            <!-- Fin bloque para Form observaciones--> 
+            <div class="medium-12 cell">
+                <div class="medium-4 cell">
+                    <button class="button success" name="guardar" type="submit">Guardar</button>
+                </div>
+            </div>
+      </div>
+    </div>
+</form>
+
+<form method="post">{% csrf_token %}
+    <input type="number" name="num1" id="num1" required>
+    <select name="operdor" id="operador">
+        <option value="+">+</option>
+        <option value="+">-</option>
+        <option value="+">*</option>
+        <option value="+">/</option>
+    </select>
+    <input type="number" name="num2" id="num2" required>
+    <button type="submit">Calcular</button>
+</form>
+    
+    {% if resultado %}
+        <p>{{resultado}}</p>
+    {% endif %}
+
+{% endblock content %}

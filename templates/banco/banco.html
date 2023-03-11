@@ -1,0 +1,46 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+
+{% block content %}
+
+<div class="grid-container shadow">
+    <div class="grid-x centrar_div">
+        <input type="text" id="search-box" name="q" placeholder="Buscar...">
+        <div id="resultados-busqueda">
+                <ul>
+                {% for result in cajas %}
+                    <li><a href="/detail/{{ result.id }}">{{ result.user }}</a></li>
+                {% empty %}
+                    <li>No se encontraron resultados</li>
+                {% endfor %}
+                </ul>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search-box').on('input', function() {
+            var query = $(this).val();
+            $.ajax({
+                url: '/banco/',
+                data: {'q': query},
+                success: function(data) {
+                    $('#resultados-busqueda').html(data);
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock content %}

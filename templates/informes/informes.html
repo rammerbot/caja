@@ -1,0 +1,89 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+
+{% block content %}
+
+<div class="grid-container shadow">
+    <div class="grid-x">
+        <div class="cell medium-3">
+            <form method="get"> {% csrf_token %}
+                Desde
+                <input type="date" name="date1" id="date1"> 
+                Hasta 
+                <input type="date" name="date2" id="date2">
+                <input type="text" name="sucursal" id="sucursal">
+                
+                <button type="submit" class="button">Buscar</button>
+                
+            </form>
+        </div>
+        <table class="hover stack">
+            <thead>
+                <tr>
+                <th width="200">Usuario</th>
+                <th width="250">Nombre de Caja</th>
+                <th width="250">Fecha</th>
+                <th width="150">Monto de Cierre</th>
+                <th width="100">Accion</th>
+                </tr>
+            </thead >
+            <tbody>
+                {% for reporte in reportes %}
+                <tr>
+                <td>{{reporte.user}}</td>
+                <td>{{reporte.nombre_caja}}</td>
+                <td>{{reporte.created}}</td>
+                <td class="valor">{{reporte.total_dia}}</td>
+                <td><a href="{% url 'informes_app:detail' reporte.id %}" class="button success shadow_buttons shadow_buttons"> Ver </a></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><strong>Total:</strong></td>
+                    <td><span id="total_valor"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            var total = 0;
+                var valores = document.querySelectorAll('.valor');
+                for (var i = 0; i < valores.length; i++) {
+                    total += parseFloat(valores[i].innerHTML.replace(',', '.'));
+                }
+                document.getElementById('total_valor').innerHTML = total.toFixed(2);
+        </script>
+
+    </div class="cell ">
+    {% if is_paginated %}
+    <div class="cell paginacion">
+        <nav aria-label="Pagination">
+            <ul class="pagination">
+                {% if page_obj.has_previous  %}
+                <li class="pagination-previous"><a href="?page={{page_obj.previous_page_number}}">atras</a></li>
+                {% endif %}
+                {% for pagina in paginator.page_range %}
+                    {%if pagina == page_obj.number%}
+                        <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}}</li>
+                    {% else %}        
+                        <li><a href="?page={{pagina}}" aria-label="Pagina {{pagina}}">{{pagina}}</a></li>
+                    {%endif%}
+                {% endfor %}
+                {% if page_obj.has_next  %}
+                    <li class="pagination-next"><a href="?page={{page_obj.next_page_number}}" aria-label="Next page">siguiente</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+    </div> 
+</div>    
+{% endblock content %}
+
