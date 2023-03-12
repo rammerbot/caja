@@ -24,7 +24,7 @@ class InformeView(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMix
         
         return cajas
     def test_func(self):
-        return self.request.user.username == 'Rhamer'
+        return self.request.user.username == 'Rammer'
     
     def handle_no_permission(self):
         # Personaliza el mensaje de error y el código de estado HTTP
