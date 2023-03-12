@@ -1,9 +1,10 @@
-<div class="grid-x">
-    <div class="cell small-2">
+<div class="grid-container">
+    <div class="gid-x">
         <div class="cell">
             <h4 class="cell usuario"> Bienvenido {{user}}</h4>
             <hr>
         </div>
+<<<<<<< HEAD
 
         <ul class="vertical menu menu_nav">
             <li><a href="{% url 'caja_app:caja' %}">Cierre de Caja</a></li>
@@ -13,5 +14,17 @@
             <hr>
             <li class="red"><a class="red" href="{% url 'users_app:logout' %}">Cerrar Sesion</a></li>
         </ul>
+=======
+        <div class="cell">
+            <ul class="vertical menu menu_nav">
+                <li><a href="{% url 'caja_app:caja' %}">Cierre de Caja</a></li>
+                <li><a href="{% url 'banco_app:banco' %}">Banco</a></li>
+                <li><a href="{% url 'informes_app:date' %}">caja Anteior</a></li>
+                <li><a href="{% url 'informes_app:informes' %}">Reportes</a></li>
+                <hr>
+                <li class="red"><a class="red" href="{% url 'users_app:logout' %}">Cerrar Sesion</a></li>
+            </ul>
+	</div>
+>>>>>>> 1e6050c4b5147c006da7c722471383b73213ba58
     </div>
-    <div class="cell large-9">
+</div>
