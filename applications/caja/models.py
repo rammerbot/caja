@@ -8,7 +8,7 @@ from .managers import CajaManager
 
 class Caja(TimeStampedModel):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     nombre_caja = models.CharField("Sucursal-Caja", max_length=50)
     tinbet = models.DecimalField("Timbet", max_digits=10, decimal_places=2, default=0.0)
     betgana = models.DecimalField("Betgana", max_digits=10, decimal_places=2, default=0.0)
