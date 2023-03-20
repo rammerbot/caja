@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+
+{% block content %}
+<div class="grid-container shadow">
+  <div class="centrar_div"> <h3>Carga de Depositos</h3> <hr></div>
+
+  <!-- Mensaje de Exito -->
+
+    {% if messages %}
+    <ul class="messages mensaje_registro">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- Fin de Mensaje de Exito -->
+   
+    <!-- Mensaje de Error -->
+
+ 
+<!-- fin de mensaje Error-->
+<!-- inicio de Form para Actualizacion de monto en cuenta-->
+
+    <form  method="post">{% csrf_token %}
+        <div class="grid-x grid-padding-x">
+            <div class="cell large-5">
+                <label >
+                Monto Inicial: 
+                {{form}}
+                </label>
+            </div>
+            <div class="cell large-5">
+                <label >
+                Deposito de Ingreso:
+                <input type="number" name="deposito_ingreso" id="">
+                </label>
+            </div>
+            <div class="cell large-5">
+                <label >
+                Saldo Disponible:
+                {{saldo_disponible}}
+                </label>
+            </div>
+            <div class="cell">
+                <button type="submit" name="recarga" class="button warning">Actualizar</button>
+            </div>
+        </div>
+    </form>
+  <!-- Fin de Form para Actualizacion de monto en cuenta-->

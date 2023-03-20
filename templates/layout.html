@@ -1,39 +1,36 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/foundation.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/app.css' %}" />
-    <title>Control de caja</title>
-</head>
-<body>
-	<div class="grid-container">
-		<div class="grid">
-			<div class="cell">
-				{% block header %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/foundation.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+        <title>Control de caja</title>
+    </head>
+    <body>
+        {% block header %}
 
-    				{% endblock header %}
-			</div>
-			<div class="cell large-2">
-		            {% block menu_vertical %}
+        {% endblock header %}
 
-		            {% endblock menu_vertical %}
-			</div>
-			<div class="cell large-10">
-		            {% block content %}
+        {% block menu_vertical %}
 
-		            {% endblock content %}
-        		</div>
-		</div>
-	</div>
-    <script src="{% static 'js/vendor/jquery.js' %}"></script>
-    <script src="{% static 'js/vendor/what-input.js' %}"></script>
-    <script src="{% static 'js/vendor/foundation.min.js' %}"></script>
-    <script>
-        $(document).foundation();
-      </script>
-</body>
+        {% endblock menu_vertical %}
+        {% block content %}
+
+        {% endblock content %}
+        
+        <script src="{% static 'js/vendor/jquery.js' %}"></script>
+        <script src="{% static 'js/vendor/what-input.js' %}"></script>
+        <script src="{% static 'js/vendor/foundation.min.js' %}"></script>
+        <script>
+            $(document).foundation();
+        </script>
+        <div class="footer_div">
+            <footer>
+            RammerBot &copy; | Acercandote al Futuro que Deseas {% now "DATE_FORMAT" %}
+            </footer>
+        </div>
+    </body>
 </html>

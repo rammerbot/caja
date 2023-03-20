@@ -1,0 +1,74 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+
+{% block content %}
+<div class="grid-container shadow">
+  <div class="centrar_div"> <h3>Iniciar Cuadre de Depositos</h3> <hr></div>
+    
+    {% if messages %}
+    <ul class="messages mensaje_registro">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+              <strong>{{ error|escape }}</strong><br>
+          {% endfor %}
+      </div>
+    {% endif %}
+    
+    <form  method="post">{% csrf_token %}
+      
+      <div class="grid-x grid-padding-x">
+        <div class="cell large-5">
+          <label >
+            {{form.fecha.label_tag}}
+            {{form.fecha}}
+          </label>
+        </div>
+        <div class="cell large-5">
+          <label >
+            {{form.inicio.label_tag}}
+            {{form.inicio}}
+          </label>
+        </div>
+        <div class="cell large-5">
+        <div class="cell large-5">
+          <button type="submit" class="button success">Crear</button>
+        </div>
+
+        <table class="hover">
+          <thead>
+            <tr>
+              <th width="200">Ultimas Fechas Creadas</th>
+              <th width="200">Disponible</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for banco in bancos %}
+              <tr>
+                <td>{{banco}}</td>
+                <td>{{banco.disponible}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </form>
+      
+    
+</div>
+{% endblock content %}
