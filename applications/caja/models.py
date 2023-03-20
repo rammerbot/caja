@@ -6,10 +6,22 @@ from .managers import CajaManager
 # Create your models here.
 
 
+class Sucursales(TimeStampedModel):
+
+    sucursal = models.CharField('Sucursal', max_length=20)
+
+    class Meta:
+        verbose_name = "Sucursal"
+        verbose_name_plural = "Sucursales"
+
+    def __str__(self):
+        return self.sucursal
+
+
 class Caja(TimeStampedModel):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    nombre_caja = models.CharField("Sucursal-Caja", max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    nombre_caja = models.ForeignKey(Sucursales, on_delete=models.CASCADE)
     tinbet = models.DecimalField("Timbet", max_digits=10, decimal_places=2, default=0.0)
     betgana = models.DecimalField("Betgana", max_digits=10, decimal_places=2, default=0.0)
     golden = models.DecimalField("Golden", max_digits=10, decimal_places=2, default=0.0)
@@ -48,6 +60,7 @@ class Caja(TimeStampedModel):
     guardado = models.DecimalField("Guardado", max_digits=10, decimal_places=2, default=0.0)
     centimos = models.DecimalField("Centimos", max_digits=10, decimal_places=2, default=0.0)
     rotos = models.DecimalField("Rotos", max_digits=10, decimal_places=2, default=0.0)
+    virtuales = models.DecimalField("Virtuales", max_digits=10, decimal_places=2, default=0.0)
     cobre = models.DecimalField("Cobre", max_digits=10, decimal_places=2, default=0.0)
     cien = models.DecimalField("100", max_digits=10, decimal_places=2, default=0.0)
     cincuenta = models.DecimalField("50", max_digits=10, decimal_places=2, default=0.0)

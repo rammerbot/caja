@@ -6,7 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import CajaForm
-from .models import Caja
+from .models import Caja, Sucursales
 
 # Create your views here.
 
@@ -76,6 +76,7 @@ class CajaView(LoginRequiredMixin, FormView):
                 ('guardado' , 1),
                 ('centimos' , 1),
                 ('rotos' , 1),
+                ('virtuales',1),
                 ('cobre' , 1),
                 ('cien' , 100),
                 ('cincuenta' , 50),
@@ -164,6 +165,7 @@ class CajaView(LoginRequiredMixin, FormView):
                 ('guardado' , 1),
                 ('centimos' , 1),
                 ('rotos' , 1),
+                ('virtuales',1),
                 ('cobre' , 1),
                 ('cien' , 100),
                 ('cincuenta' , 50),
@@ -198,6 +200,7 @@ class CajaView(LoginRequiredMixin, FormView):
             """Crear Registro nuevo"""
 
             # Obtener los valores de los campos del formulario
+            nombre_caja = request.POST.get('nombre_caja')
             tinbet = request.POST.get('tinbet')
             betgana = request.POST.get('betgana')
             golden = request.POST.get('golden')
@@ -222,6 +225,7 @@ class CajaView(LoginRequiredMixin, FormView):
             guardado = request.POST.get('guardado')
             centimos = request.POST.get('centimos')
             rotos = request.POST.get('rotos')
+            virtuales = request.POST.get('virtuales')
             cobre = request.POST.get('cobre')
             cien = round(float(request.POST.get('cien'))*100,2)
             cincuenta = round(float(request.POST.get('cincuenta'))*50,2)
@@ -231,13 +235,10 @@ class CajaView(LoginRequiredMixin, FormView):
             dos = round(float(request.POST.get('dos'))*2,2)
             uno = round(float(request.POST.get('uno'))*1,2)
             medio = round(float(request.POST.get('medio'))*0.5,2)
-
-            print(medio)
-            
-            
+          
             Caja.objects.create(
                 user = self.request.user,
-                nombre_caja = self.request.POST.get("nombre_caja"),
+                nombre_caja =Sucursales.objects.get(id=int(nombre_caja)),
                 tinbet = float(tinbet),
                 betgana = float(betgana),
                 golden = float(golden),
@@ -266,6 +267,7 @@ class CajaView(LoginRequiredMixin, FormView):
                 guardado = float(guardado),
                 centimos = float(centimos),
                 rotos = float(rotos),
+                virtuales=float(virtuales),
                 cobre = cobre,
                 cien = cien,
                 cincuenta = cincuenta,

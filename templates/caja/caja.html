@@ -245,6 +245,15 @@
                         </label>   
                     </div>
                     <div class="medium-4 cell borde">
+                        <label>{{form.virtuales.label_tag}} {{form.virtuales}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_virtuales}}
+                                    {% else %}
+                                    {{form.virtuales.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
                         <label>{{form.cobre.label_tag}} {{form.cobre}}
                             {% if resultado_diferencia %}
                                     {{resultado_cobre}}
