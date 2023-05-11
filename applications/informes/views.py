@@ -24,14 +24,12 @@ class InformeView(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMix
         
         return cajas
     def test_func(self):
-        return self.request.user.username == 'Rammer'
+        return self.request.user.username == 'Rhamer'
     
     def handle_no_permission(self):
         # Personaliza el mensaje de error y el código de estado HTTP
         return HttpResponseForbidden('Lo siento, no tienes permiso requeridos para acceder a esta página.', status=403)
     
-
-
 
 class ListaCaja(LoginRequiredMixin,ListView):
     template_name = 'informes/fecha_caja.html'

@@ -12,78 +12,163 @@
 {% block content %}
 
 <div class="grid-container shadow">
-    <div class="grid-x centrar_div">
-        <div class="cell large-5 callout primary shadow_callout">
-            <h5>Usuario</h5>
-            <p>{{caja.user}}</p>
-        </div>
-        <div class="cell medium-5 callout primary shadow_callout">
-            <h5>Local-Caja</h5>
-            <p>{{caja.nombre_caja}}</p>
-        </div>
-        <div class="cell medium-5 callout primary shadow_callout">
-            <h5>Fecha de Cierre</h5>
-            <p><p>{{caja.created}}</p></p>
-        </div>
-        <div class="cell medium-5 callout primary shadow_callout">
-            <h5>Cierre Total</h5>
-            <p>{{caja.total_dia}}</p>
-        </div>
-        <div class="cell table_detail">
-            <hr>
-            <h5> Cierre de Sistemas</h5>
-        </div>
-        <table class"hover">
-            <thead>
-              <tr>
-                <th width="200">Sistema</th>
-                <th width="200">Monto</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Tinbet</td>
-                <td>{{caja.tinbet}}</td>
-              </tr>
-              <tr>
-                <td>Betgana</td>
-                <td>{{caja.betgana}}</td>
-              </tr>
-              <tr>
-                <td>Golden</td>
-                <td>{{caja.golden}}</td>
-              </tr>
-              <tr>
-                <td>Soft</td>
-                <td>{{caja.soft}}</td>
-              </tr>
-            <tr>
-                <td>Caballos Universal 1</td>
-                <td>{{caja.caballos_uh1}}</td>
-              </tr>
-              <tr>
-                <td>Caballos Universal 2</td>
-                <td>{{caja.caballos_uh2}}</td>
-              </tr>
-              <tr>
-                <td>Caballos Peruvian</td>
-                <td>{{caja.caballos_peruvian}}</td>
-              </tr>
-              <tr>
-                <td>Mesa</td>
-                <td>{{caja.mesa}}</td>
-              </tr>
-              <tr>
-                <td><strong>Total Sistemas: </strong> {{caja.total_sistemas}}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="medium-12 cell">
-            <div class="medium-4 cell">
-                <button class="button warning shadow_buttons" onclick="window.print()">Imprimir</button>
-            </div>
-        </div>
+  <!--Identificacion de usuario que cerro la caja-->
+  <div class="grid-x centrar_div">
+    <div class="cell large-5 callout primary shadow_callout">
+        <h5>Usuario</h5>
+        <p>{{caja.user}}</p>
     </div>
+    <div class="cell medium-5 callout primary shadow_callout">
+        <h5>Local-Caja</h5>
+        <p>{{caja.nombre_caja}}</p>
+    </div>
+    <div class="cell medium-5 callout primary shadow_callout">
+        <h5>Fecha de Cierre</h5>
+        <p><p>{{caja.created}}</p></p>
+    </div>
+    <div class="cell medium-5 callout primary shadow_callout">
+        <h5>Cierre Total</h5>
+        <p>{{caja.total_dia}}</p>
+    </div>
+
+    <!-- detalles de Cierre de sistemas-->
+    <div class="cell table_detail">
+        <hr>
+        <h5> Cierre de Sistemas</h5>
+    </div>
+    <table class"hover">
+      <thead>
+        <tr>
+          <th width="200">Sistema</th>
+          <th width="200">Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tinbet</td>
+          <td>{{caja.tinbet}}</td>
+        </tr>
+        <tr>
+          <td>Betgana</td>
+          <td>{{caja.betgana}}</td>
+        </tr>
+        <tr>
+          <td>Golden</td>
+          <td>{{caja.golden}}</td>
+        </tr>
+        <tr>
+          <td>Soft</td>
+          <td>{{caja.soft}}</td>
+        </tr>
+        <tr>
+          <td>Caballos Universal 1</td>
+          <td>{{caja.caballos_uh1}}</td>
+        </tr>
+        <tr>
+          <td>Caballos Universal 2</td>
+          <td>{{caja.caballos_uh2}}</td>
+        </tr>
+        <tr>
+          <td>Caballos Peruvian</td>
+          <td>{{caja.caballos_peruvian}}</td>
+        </tr>
+        <tr>
+          <td>Mesa</td>
+          <td>{{caja.mesa}}</td>
+        </tr>
+        <tr>
+          <td><strong>Total Sistemas: </strong> {{caja.total_sistemas}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!--detalles de Egresos-->
+    <hr>
+  <div class="cell table_detail">
+      <hr>
+      <h5> Egresos</h5>
+  </div>
+  <table class"hover">
+      <thead>
+        <tr>
+          <th width="200">Egresos</th>
+          <th width="200">Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Yapes</td>
+          <td>{{caja.yapes}}</td>
+        </tr>
+        <tr>
+          <td>POS</td>
+          <td>{{caja.pos}}</td>
+        </tr>
+        <tr>
+          <td>Pago de Tickets</td>
+          <td>{{caja.pagos_tickets}}</td>
+        </tr>
+        <tr>
+          <td>Gastos Generales</td>
+          <td>{{caja.gastos_generales}}</td>
+        </tr>
+        <tr>
+          <td><strong>Total Egresos: </strong>{{caja.egreso_total}}</td>
+        </tr>
+      </tbody>
+  </table>
+  <!--Detalles de Ingresos-->
+  <div class="cell table_detail">
+    <hr>
+    <h5> Ingresos</h5>
+  </div>
+  <table class"hover">
+    <thead>
+      <tr>
+        <th width="200">Ingresos</th>
+        <th width="200">Monto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tickets Cobrados</td>
+        <td>{{caja.cobros_tickets}}</td>
+      </tr>
+      <tr>
+        <td>Depositos</td>
+        <td>{{caja.depositos}}</td>
+      </tr>
+      <tr>
+        <td>Recargas</td>
+        <td>{{caja.recargas}}</td>
+      </tr>
+      <tr>
+        <td>Ingresos Generales</td>
+        <td>{{caja.ingreso_general}}</td>
+      </tr>
+      <tr>
+        <td><strong>Total Sistemas: </strong>{{caja.ingreso_total}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!--Observaciones-->
+  <hr>
+  <div class="cell table_detail">
+    <hr>
+    <h5> Observaciones:</h5>
+  </div>
+  <div class="medium-12 cell">
+    <div class="cell medium-5 callout primary">
+        <p>{{caja.observaciones}}</p>
+    </div>
+  </div> 
+  <div class="medium-12 cell">
+    <div class="medium-4 cell">
+        <button class="button warning shadow_buttons" onclick="window.print()">Imprimir</button>
+    </div>
+  </div>  
+  </div>
+</div>
+  <!--este div cierra el que se abre en el include del menu vertical-->
 </div>
 {% endblock content %}
 
