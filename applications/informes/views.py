@@ -18,11 +18,11 @@ class InformeView(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMix
     def get_queryset(self):
         date1 = self.request.GET.get('date1',"")
         date2 = self.request.GET.get('date2',"")
-        sucursal = self.request.GET.get('sucursal',"")
-        
+        sucursal = self.request.GET.get('sucursal',"")        
         cajas = Caja.objects.report_by_date(date1, date2, sucursal)
         
         return cajas
+    
     def test_func(self):
         return self.request.user.username == 'Rhamer'
     

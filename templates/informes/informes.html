@@ -14,6 +14,7 @@
 
 <div class="grid-container shadow">
     <div class="grid-x">
+        <!--form para busqueda por fecha y establecimiento-->
         <div class="cell medium-3">
             <form method="get"> {% csrf_token %}
                 Desde
@@ -21,11 +22,10 @@
                 Hasta 
                 <input type="date" name="date2" id="date2">
                 <input type="text" name="sucursal" id="sucursal">
-                
                 <button type="submit" class="button">Buscar</button>
-                
             </form>
         </div>
+        <!--Tabla para mostrar las cajas-->
         <table class="hover stack">
             <thead>
                 <tr>
@@ -52,6 +52,7 @@
                 </tr>
             </tbody>
         </table>
+        <!-- script para suma de las cajas-->
         <script>
             var total = 0;
                 var valores = document.querySelectorAll('.valor');
@@ -60,7 +61,7 @@
                 }
                 document.getElementById('total_valor').innerHTML = total.toFixed(2);
         </script>
-
+<!--Paginacion-->
     </div class="cell ">
     {% if is_paginated %}
     <div class="cell paginacion">
