@@ -9,9 +9,10 @@
 {% include 'includes/menu_vertical.html' %}
 {% endblock menu_vertical %}
 
+<!--Bloque de contenido para el form que iniciara el dia de trabajo-->
 {% block content %}
 <div class = "gird container shadow centrar">
-    <h5> Registro de Depositos Realizados</h5>
+  <h5> Por favor ingrese el Saldo inicial del Dia</h5>
 <form method="post">{% csrf_token %}
     {{form.as_p}}
     <button type="submit" class="button success">Guardar</button>

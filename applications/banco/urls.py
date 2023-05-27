@@ -8,4 +8,5 @@ urlpatterns = [
      path('dia/<pk>', views.BancoDetailView.as_view(), name="dia"),
      path('deposito/', views.DepositoView.as_view(), name="deposito" ),
      path('pago/', views.PagoView.as_view(), name="pago" ),
+     path('create_day/', views.CreateDay.as_view(), name="create_day"),
 ]

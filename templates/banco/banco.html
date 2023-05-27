@@ -10,15 +10,15 @@
 {% include 'includes/menu_vertical.html' %}
 {% endblock menu_vertical %}
 
+<!--Bloque que mostrara al usuario si debe iniciar un nuevo dia o si debe cargar el dia en transcurso-->
 {% block content %}
 <div class = "gird container shadow centrar">
 <h3>Bienvenido al sistema,  por favor haga click {{respuesta}} {% now "DATE_FORMAT" %}</h3>
-
+<!--condicion que indica al usuario si el dia esta en transcurso o si se debe iniciar uno nuevo-->
 {% if respuesta == "crear el dia" %}
-<a class="button success shadow_buttons" href="#">Crear día</a>
+<a class="button success shadow_buttons" href="{% url 'banco_app:create_day' %}">Crear día</a>
 {% else %}
 <a class="button warning shadow_buttons" href="{% url 'banco_app:dia' dia_detalle.id %}">Mostrar día</a>
-<p>ID = {{dia_detalle.id}}</p>
 {% endif %}
 
 </div>

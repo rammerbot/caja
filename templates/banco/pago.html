@@ -11,6 +11,7 @@
 
 {% block content %}
 <div class = "gird container shadow centrar">
+    <h5>Registro de Tansferencias Realizadas</h5>
 <form method="post">{% csrf_token %}
     {{form.as_p}}
     <button type="submit" class="button success">Guardar</button>
