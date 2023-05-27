@@ -245,6 +245,15 @@
                         </label>   
                     </div>
                     <div class="medium-4 cell borde">
+                        <label>{{form.virtuales.label_tag}} {{form.virtuales}}
+                            {% if resultado_diferencia %}
+                                    {{resultado_virtuales}}
+                                    {% else %}
+                                    {{form.virtuales.value}}
+                                {% endif %}
+                        </label>   
+                    </div>
+                    <div class="medium-4 cell borde">
                         <label>{{form.cobre.label_tag}} {{form.cobre}}
                             {% if resultado_diferencia %}
                                     {{resultado_cobre}}
@@ -356,5 +365,7 @@
             <button class="button warning shadow_buttons" onclick="window.print()">Imprimir</button>
         </div>
     </div>
+</div>
+<!--este div cierra el que se abre en el include del menu vertical-->
 </div>
 {% endblock content %}

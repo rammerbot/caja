@@ -4,14 +4,14 @@
             <h4 class="cell usuario"> Bienvenido {{user}}</h4>
             <hr>
         </div>
-        
+
         <ul class="vertical menu menu_nav">
-            <li><a href="{% url 'caja_app:caja' %}">Cierre de Caja</a></li>
-            <li><a href="{% url 'banco_app:banco' %}">Banco</a></li>
-            <li><a href="{% url 'informes_app:date' %}">caja Anteior</a></li>
-            <li><a href="{% url 'informes_app:informes' %}">Reportes</a></li>
+            <li><a href="{% url 'caja_app:caja' %}"><strong>Cierre de Caja</strong></a></li>
+            <li><a href="{% url 'informes_app:date' %}"><strong>caja Anteior</strong></a></li>
+            <li><a href="{% url 'banco_app:banco' %}"><strong>Banco</strong></a></li>
+            <li><a href="{% url 'informes_app:informes' %}"><strong>Reportes</strong></a></li>
             <hr>
-            <li class="red"><a class="red" href="{% url 'users_app:logout' %}">Cerrar Sesion</a></li>
+            <li class="red"><a class="red" href="{% url 'users_app:logout' %}"><strong>Cerrar Sesion</strong></a></li>
         </ul>
     </div>
-    <div class="cell large-9">
+    <div class="cell large-9 centro">

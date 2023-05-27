@@ -1,0 +1,105 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+
+{% block content %}
+<div class = "gird container shadow">
+    <div class="grid-x centrar_div">
+        <!--Cabecera informativa para saldo y caja inicial-->
+        <div class="cell large-5 callout primary shadow_callout">
+            <h5>Saldo Inicial</h5>
+            <p>{{dia.saldo_inicial}}</p>
+        </div>
+        <div class="cell medium-5 callout primary shadow_callout">
+            <h5>Saldo Actual + {{suma_depositos}} - {{suma_transferencias}}</h5>
+            <p>{{saldo_actual}}</p>
+        </div>
+        <divclass="cell large-5">
+            <p>Fecha: {% now "DATE_FORMAT" %}</p>
+        </div>
+        
+        <hr>
+        <!--Botones para las tranferebcias y depositos-->
+        <div class="cell large-7 callout success">
+            <h5>Registre los depositos realizados aqui</h5>
+            <a class="button shadow_buttons" href="{% url 'banco_app:deposito' %}">Deposito</a>
+        </div>
+        <div class="cell large-7 callout success">
+            <h5>registre las transferencias realizadas aqui</h5>
+            <a class="button shadow_buttons" href="{% url 'banco_app:pago' %}">Transferencia</a>
+        </div>
+        <!--Depositos Realizados-->
+        <hr>
+        <div class="cell large-7">
+            <h3>Depositos Realizados</h3>
+        </div>
+        <div class="cell large-10">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Monto del Deposito
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for deposito in depositos %}
+                        <tr>
+                            <td>{{deposito.deposito}}</td>
+                        </tr>
+                    {% endfor %} 
+                    <tr>
+                        <td>
+                            <strong>total:   </strong>{{suma_depositos}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--Transferencias Realizadas-->
+        <hr>
+        <div class="cell large-7">
+            <h3>Transferencias Realizadas</h3>
+        </div>
+        <div class="cell large-10">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Sucursal
+                        </th>
+                        <th>
+                            monto
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for transferencia in transferencias %}
+                        <tr>
+                            <td>{{transferencia.sucursal}}</td>
+                            <td>{{transferencia.pago}}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <strong>total:   </strong>{{suma_transferencias}}
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+    </div>
+</div>
+</div>
+{% endblock content %}

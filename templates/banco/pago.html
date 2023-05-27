@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+
+{% block content %}
+<div class = "gird container shadow centrar">
+<form method="post">{% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="button success">Guardar</button>
+</form>
+
+</div>
+</div>
+{% endblock content %}

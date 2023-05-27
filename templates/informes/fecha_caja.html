@@ -22,18 +22,18 @@
             <table class="hover stack">
                 <thead>
                     <tr>
-                    <th width="200">Usuario</th>
                     <th width="250">Nombre de Caja</th>
                     <th width="250">Fecha</th>
+                    <th width="150">Caja Virtuales</th>
                     <th width="150">Caja Anterior</th>
                     </tr>
                 </thead >
                 <tbody>
-                    {% for caja in cajas %}
+                   {% for caja in cajas %}
                     <tr>
-                    <td>{{caja.user}}</td>
                     <td>{{caja.nombre_caja}}</td>
                     <td>{{caja.created}}</td>
+                    <td>{{caja.virtuales}}</td>
                     <td>{{caja.efectivo}}</td>
                     </tr>
                     {% endfor %}
@@ -63,6 +63,8 @@
             {% endif %}
         </div>
     </div>
-</div>    
+</div>  
+  <!--este div cierra el que se abre en el include del menu vertical-->
+</div>  
 {% endblock content %}
 

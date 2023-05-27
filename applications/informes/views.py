@@ -31,8 +31,6 @@ class InformeView(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMix
         return HttpResponseForbidden('Lo siento, no tienes permiso requeridos para acceder a esta página.', status=403)
     
 
-
-
 class ListaCaja(LoginRequiredMixin,ListView):
     template_name = 'informes/fecha_caja.html'
     context_object_name = 'cajas'
