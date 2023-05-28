@@ -10,4 +10,10 @@ class BancoManager(models.Manager):
         #saldo_actual =  saldo_inicial + depositos - transferencias
 
         return saldo_inicial
+    
+    def banco_by_date(self, date):
+        bancos = self.filter(created__icontains = date).order_by('-created')
+
+        return bancos
+    
 

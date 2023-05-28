@@ -1,0 +1,69 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+
+<!--Bloque que mostrara los dias cargados al sistema-->
+{% block content %}
+
+<div class="grid-container shadow">
+    <div class="grid-x">
+        <!--form para busqueda por fecha y establecimiento-->
+        <div class="cell medium-3">
+            <form method="get"> {% csrf_token %}
+                Fecha
+                <input type="date" name="date1" id="date1"> 
+                <button type="submit" class="button">Buscar</button>
+            </form>
+        </div>
+        <!--Tabla para mostrar las cajas-->
+        <table class="hover stack">
+            <thead>
+                <tr>
+                <th width="200">Fecha</th>
+                <th width="100">Accion</th>
+                </tr>
+            </thead >
+            <tbody>
+                {% for banco in bancos %}
+                <tr>
+                <td>{{banco.created|date:"Y-m-d"}}</td>
+                <td><a href="{% url 'informes_app:banco_detail' banco.id %}" class="button success shadow_buttons shadow_buttons"> Ver </a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+ 
+<!--Paginacion-->
+    </div class="cell ">
+    {% if is_paginated %}
+    <div class="cell paginacion">
+        <nav aria-label="Pagination">
+            <ul class="pagination">
+                {% if page_obj.has_previous  %}
+                <li class="pagination-previous"><a href="?page={{page_obj.previous_page_number}}">atras</a></li>
+                {% endif %}
+                {% for pagina in paginator.page_range %}
+                    {%if pagina == page_obj.number%}
+                        <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}}</li>
+                    {% else %}        
+                        <li><a href="?page={{pagina}}" aria-label="Pagina {{pagina}}">{{pagina}}</a></li>
+                    {%endif%}
+                {% endfor %}
+                {% if page_obj.has_next  %}
+                    <li class="pagination-next"><a href="?page={{page_obj.next_page_number}}" aria-label="Next page">siguiente</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+    </div> 
+</div>    
+{% endblock content %}

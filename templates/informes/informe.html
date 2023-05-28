@@ -1,0 +1,21 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block header %}
+{% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block menu_vertical %}
+{% include 'includes/menu_vertical.html' %}
+{% endblock menu_vertical %}
+
+<!--Bloque que mostrara al usuario las opciones entre los informes a visualizar-->
+{% block content %}
+<div class = "gird container shadow centrar">
+    <h5> Seleccione su la entrada correspondiente a su consulta</h5>
+    <a class="button shadow_buttons" href="{% url 'informes_app:informe_cajas' %}">Informe de Cajas</a>
+    <a class="button shadow_buttons" href="{% url 'informes_app:informe_bancos' %}">Informe de Oficina</a>
+</div>
+</div>
+{% endblock content %}
