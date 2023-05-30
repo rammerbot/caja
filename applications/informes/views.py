@@ -95,6 +95,14 @@ class BancoDetailView(DetailView):
         context["suma_depositos"] = suma_depositos
         context["suma_transferencias"] = suma_transferencias
         context["saldo_final"] = saldo_inicial + suma_depositos - suma_transferencias
+        if suma_depositos and suma_transferencias:
+            context["saldo_final"] = suma_depositos + saldo_inicial - suma_transferencias
+        elif suma_transferencias:
+            context["saldo_final"] = saldo_inicial - suma_transferencias
+        elif suma_depositos:
+            context["saldo_final"] = saldo_inicial + suma_depositos
+        else:
+            context["saldo_final"] = saldo_inicial
         
         return context
 
