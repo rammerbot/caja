@@ -10,7 +10,7 @@
   
 > El Sistema Caja está diseñado para una empresa con sucursales que realizan actividades de ventas reflejadas en múltiples plataformas. Cada plataforma genera diferentes reportes y balances diarios.
 
-> Características
+#### Características
 - Recolección de Reportes: El sistema facilita la recolección de diferentes reportes diarios y los carga directamente al servidor de la empresa.
 - Operación Dinámica y Sin Errores: El sistema está diseñado para realizar la tarea de manera dinámica, sencilla, personalizada por empleado y libre de errores.
 - Acceso Administrativo: Acceso a través de una cuenta administrativa para evaluar los reportes cargados al sistema mediante una interfaz sencilla y amigable.
@@ -113,13 +113,15 @@ git push origin feature/tu-funcionalidad
 
 ### English:
 
-##Caja System
+## Caja System
 <div align="center">
 <img src="https://employee.rammerbot.com/static/img/espacio2.jpg" align="center" style="width: 100%" />
 </div>  
 <div align="center">System for Centralizing Daily Report Flow</div>
-#### Description
-> The Caja System is designed for a company with branches that conduct sales activities reflected on multiple platforms. Each platform generates different daily reports and balances.
+
+ ### Description
+ 
+ > The Caja System is designed for a company with branches that conduct sales activities reflected on multiple platforms. Each platform generates different daily reports and balances.
 
 #### Features
 
